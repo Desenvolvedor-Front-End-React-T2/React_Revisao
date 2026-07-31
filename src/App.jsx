@@ -8,6 +8,9 @@ function App() {
 
   return (
     <>
+      <h1>
+
+      </h1>
       <InputTest estado={estado} setEstado={setEstado} />
     </>
   )
