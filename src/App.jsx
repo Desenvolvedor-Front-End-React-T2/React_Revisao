@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import InputTest from './components/inputTest/index.jsx'
 import './App.css'
 
 function App() {
@@ -7,10 +8,7 @@ function App() {
 
   return (
     <>
-
-      <h1>{estado}</h1>
-      <input value={estado} onChange={(e) => setEstado(e.target.value)} />
-
+      <InputTest estado={estado} setEstado={setEstado} />
     </>
   )
 }
