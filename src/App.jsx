@@ -9,9 +9,12 @@ function App() {
   return (
     <>
       <h1>
-
+        Oi!
       </h1>
-      <InputTest estado={estado} setEstado={setEstado} />
+      <div className='g-4' style={{ display: 'flex', flexDirection: 'column' }}>
+        <InputTest estado={estado} setEstado={setEstado} />
+        <InputTest estado={estado} setEstado={setEstado} />
+      </div>
     </>
   )
 }
