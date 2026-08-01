@@ -27,6 +27,8 @@ function App() {
       title.current = JSON.parse(localStorage.getItem('Credentials'))[0]
       console.log(title.current)
 
+      // Função de callback do tipo Promisse, para aguardar setar o valor do estado name, após o setName, que é assíncrono, 
+      // e assim evitar que o valor de name seja setado antes do valor de title.current ser atualizado.
       new Promise((resolve) => {
         setTimeout(() => {
           resolve(title.current.toUpperCase())
