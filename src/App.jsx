@@ -15,8 +15,12 @@ function App() {
   const [password, setPassword] = useState('')
 
   const [login, setLogin] = useState(false)
+  const [name, setName] = useState('Tela de login...')
   const title = useRef('')
 
+  useEffect(() => {
+    localStorage.setItem('Credentials', JSON.stringify(['sctech', '123']))
+  }, [])
 
   useEffect(() => {
     if (login) {
@@ -25,25 +29,22 @@ function App() {
     }
   }, [login])
 
-
   const handleSubmit = (loginData) => {
     loginData.preventDefault()
     const credentials = JSON.parse(localStorage.getItem('Credentials'))
     if (loginData.target[0].value === credentials[0] && loginData.target[1].value === credentials[1]) {
       setLogin(true)
-      // setName(credentials[0].toUpperCase())
+      setName(credentials[0].toUpperCase())
       alert('Login realizado com sucesso!')
     } else {
       alert('Usuário ou senha incorretos!')
     }
   }
 
-
   return (
     <>
-      {localStorage.setItem('Credentials', JSON.stringify(['sctech', '123']))}
       <h1>
-        {/* {name} */}
+        {name}
       </h1>
       <h2>Tela de login...</h2>
       <p>Digite abaixo seus dados.</p>
