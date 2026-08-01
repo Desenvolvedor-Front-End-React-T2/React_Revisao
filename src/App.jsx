@@ -26,6 +26,15 @@ function App() {
     if (login) {
       title.current = JSON.parse(localStorage.getItem('Credentials'))[0]
       console.log(title.current)
+
+      new Promise((resolve) => {
+        setTimeout(() => {
+          resolve(title.current.toUpperCase())
+        }, 1000)
+      }).then((response) => {
+        setName(response)
+      })
+
     }
   }, [login])
 
@@ -34,7 +43,7 @@ function App() {
     const credentials = JSON.parse(localStorage.getItem('Credentials'))
     if (loginData.target[0].value === credentials[0] && loginData.target[1].value === credentials[1]) {
       setLogin(true)
-      setName(credentials[0].toUpperCase())
+      // setName(credentials[0].toUpperCase())
       alert('Login realizado com sucesso!')
     } else {
       alert('Usuário ou senha incorretos!')
