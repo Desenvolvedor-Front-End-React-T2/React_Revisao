@@ -5,11 +5,11 @@ function InputTest({ name, state, setState }) {
         <>
             <label>{name || 'Campo a ser preenchido'}</label>
             <input
-                value={state}
-                onChange={(e) => setState(e.target.value)}
+                value={state.name}
+                onChange={(e) => setState(state, name, e.target.value)}
                 style={{ width: '150px' }}
             />
-            {/* <p>{estado || 'Digite algo...'}</p> */}
+            <p>{state.name || 'Digite algo...'}</p>
         </>
     )
 }

@@ -3,17 +3,13 @@ import InputTest from './components/inputTest/index.jsx'
 import './App.css'
 
 function App() {
-  // const [count, setCount] = useState(0)
-  // const [state, setState] = useState(
-  //   {
-  //     'Usuário': '',
-  //     'Senha': ''
-  //   }
-  // )
 
-  const [user, setUser] = useState('')
-  const [password, setPassword] = useState('')
-
+  const [state, setState] = useState(
+    {
+      'Usuário': '',
+      'Senha': ''
+    }
+  )
   const [login, setLogin] = useState(false)
   const [name, setName] = useState('Tela de login...')
   const title = useRef('')
@@ -43,13 +39,19 @@ function App() {
   const handleSubmit = (loginData) => {
     loginData.preventDefault()
     const credentials = JSON.parse(localStorage.getItem('Credentials'))
-    if (loginData.target[0].value === credentials[0] && loginData.target[1].value === credentials[1]) {
+    if (state.Usuário === credentials[0] && state.Senha === credentials[1]) {
       setLogin(true)
-      // setName(credentials[0].toUpperCase())
       alert('Login realizado com sucesso!')
     } else {
       alert('Usuário ou senha incorretos!')
     }
+  }
+
+  const setFormData = (state, name, value) => {
+    setState((state) => ({
+      ...state,
+      [name]: value
+    }))
   }
 
   return (
@@ -62,8 +64,18 @@ function App() {
 
       <form onSubmit={handleSubmit}>
         <div className='g-4' style={{ display: 'flex', flexDirection: 'column' }}>
-          <InputTest key={'user'} name={'Usuário'} state={user} setState={setUser} />
-          <InputTest key={'password'} name={'Senha'} state={password} setState={setPassword} />
+          <InputTest
+            key={Object.keys(state)[0]}
+            name={Object.keys(state)[0]}
+            state={state}
+            setState={setFormData}
+          />
+          <InputTest
+            key={Object.keys(state)[1]}
+            name={Object.keys(state)[1]}
+            state={state}
+            setState={setFormData}
+          />
         </div>
         <button type='submit' >Entrar</button>
       </form>
